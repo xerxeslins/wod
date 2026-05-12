@@ -145,6 +145,34 @@
             h2 { font-size: 1.6rem; }
             nav a { padding: 6px 12px; font-size: 0.8rem; }
         }
+        #btn-topo {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            border: none;
+            background: var(--accent);
+            color: #fff;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        #btn-topo:hover {
+            background: #5a0000;
+        }
+        main a:not(.btn) {
+            color: var(--accent);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+        }
+        main a:not(.btn):hover {
+            background: var(--accent-light);
+            border-bottom: 1px solid var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -166,6 +194,8 @@
         <a href="#monstros">Adversários</a>
         <a href="#xp">XP</a>
         <a href="#nomes">Nomes</a>
+        <a href="#gerador">Gerador</a>
+        <a href="#creditos">Créditos</a>
     </nav>
 </header>
 
@@ -189,7 +219,7 @@
             <li><strong>12:</strong> +3</li>
         </ul>
         <h3>Perícias</h3>
-        <p>Além da que é atribuída pela tua classe (ver <em>Classes</em>, abaixo) escolhe uma Perícia. As perícias são: <em>Atleticismo, Cura, Erudição, Fraude, Furtividade, Interpretação, Liderança, Perceção, ou Sobrevivência</em>.</p>
+        <p>Além da que é atribuída pela tua classe (ver <a href="#classes">Classes</a>, abaixo) escolhe uma Perícia. As perícias são: <em>Atleticismo, Cura, Erudição, Fraude, Furtividade, Interpretação, Liderança, Perceção, ou Sobrevivência</em>.</p>
         <h3>Pontos de Vida</h3>
         <p>Lança um <strong>Dado de Vida (d6)</strong> + um número de dados extra de vida igual à tua <strong>CON</strong>. De entre os dados que acabaste de lançar escolhe um número deles igual ao teu <strong>Nível</strong> e soma os seus resultados para determinares os teus Pontos de Vida iniciais. Se porventura começares com menos PV do que o teu potencial máximo anuncia ao Mestre a razão por que ou pede-lhe uma ideia que o explique.</p>
     </section>
@@ -383,11 +413,75 @@
         <h3>Cynethis e Tarsis</h3>
         <p>Ari Eil, Ashourina, Eilbrat, Hani'ata, Lawita, Marjanita, Nahrina, Paldina, Ramsina, Rdita, Sahdina, Sorme, Yata, Yayota, Ador Eil, Ajdina, Akhiban, Anlel, Ashur Ban, Awidan, Bailbrone, Hawil, Mekha Eil, Nabo Ram, Nardeen, Nasirpal, Rab Seen, Ram Eil, Sennacherib, Shaybo, Zah Eil.</p>
     </section>
+    <section id="gerador">
+        <h2>Gerador de Personagem</h2>
+        <p>Crie um personagem aleatório de Nível 1 baseado nas regras completas do sistema.</p>
+        <button class="btn" onclick="gerarPersonagem()" style="display: inline-block; cursor: pointer;">Sortear Personagem</button>
+        <div id="resultado-gerador" style="margin-top: 20px; padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; min-height: 100px;">
+            <span class="placeholder">Clique no botão para gerar...</span>
+        </div>
+    </section>
     <section id="creditos">
         <h2>Créditos</h2>
         <p><strong>Sistema:</strong> John Harper (<a href="https://johnharper.itch.io/world-of-dungeons" target="_blank" style="color: var(--accent);">Link</a>)</p>
         <p><strong>Versão em português:</strong> Traduzida e adaptada por João Mariano (<a href="https://newsrpg.wordpress.com/2015/02/14/mundo-de-masmorras-hacks/" target="_blank" style="color: var(--accent);">Link</a>)</p>
     </section>
 </main>
+<button id="btn-topo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Topo</button>
+<script>
+    window.onscroll = function() {
+        const btn = document.getElementById("btn-topo");
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    };
+</script>
+<script>
+const nomes = ["Aiden", "Teague", "Efnisien", "Hoel", "Maddox", "Fingal", "Killian", "Herne", "Weylyn", "Taliesin", "Kentigern", "Gwawl", "Fearghus", "Calder", "Deargh", "Scilti", "Tegid", "Duffy", "Edan", "Fiacre", "Brigit", "Nantosuelta", "Isolde", "Fingula", "Guennola", "Zinerva", "Oilell", "Oppida", "Rowena", "Penarddun", "Fedelm", "Deirdre", "Fenella", "Cinnia", "Mavie", "Arienh", "Adsaluta", "Epona", "Daghda", "Gitta", "Gaius", "Lucius", "Marcus", "Publius", "Titus", "Tiberia", "Aulus", "Gnaeus", "Spurius", "Manius", "Servius", "Appius", "Numerius", "Vibius", "Aelius", "Calpurius", "Moravius", "Naevia", "Caecilius", "Tullius", "Livia", "Lucilia", "Durmius", "Fabia", "Velleius", "Calidius", "Capenius", "Furius", "Domitius", "Fannius", "Cordius", "Larcius", "Albius", "Amatius", "Cornelia", "Laelius", "Flavia", "Aemilius", "Caelius", "Tuccius", "Curius", "Fidelius", "Fulvius", "Gellius", "Horatia", "Hortensia", "Marcius", "Labenius", "Luventia", "Teodoro", "Ubaldo", "Bartolomeu", "Egas", "Gualdim", "Brás", "Fuas", "Garcia", "Gil", "Sancho", "Mendo", "Teobaldo", "Godim", "Martim", "Pêro", "Damião", "Elias", "Fernão", "Urbano", "Afonsa", "Epifânia", "Patronilha", "Sancha", "Urraca", "Guiomar", "Henriqueta", "Hermengarda", "Brites", "Apolónia", "Branca", "Úrsula", "Violante", "Estefânia", "Aldonça", "Briolanja", "Brízida", "Constança", "Genoveva", "Luzia", "Mécia", "Abebe", "Afework", "Azmera", "Bogale", "Daniachew", "Kebede", "Kifle", "Lebna", "Mamo", "Miruts", "Negasi", "Selam", "Selassiee", "Tamirat", "Teferi", "Tesfaye", "Tewodros", "Wendimu", "Yekuno", "Zere", "Adhiambo", "Alitash", "Ayanna", "Berhane", "Cherika", "Desta", "Fana", "Hullanta", "Lielit", "Lishan", "Makeda", "Melke", "Misrak", "Nishan", "Sisay", "Teru", "Wegaye", "Worknesh", "Yeshi", "Zema", "Amr", "Baqar", "Fadl", "Ghassan", "Habib", "Hakim", "Hamzah", "Hashim", "Imad", "Inayat", "Khalid", "Khalil", "Malik", "Mansur", "Marwan", "Nabil", "Nasr", "Rafiq", "Rashid", "Salim", "Tahir", "Thabit", "Ubayd", "Wadi", "Yazid", "Zahir", "Zayd", "Alina", "Azizah", "Bushra", "Chanda", "Dahab", "Faiza", "Ghaniyah", "Halima", "Hayfa", "Jamilah", "Jumana", "Kashifah", "Layla", "Labna", "Maheera", "Maira", "Maysun", "Nafisa", "Nuriyah", "Nusayba", "Ramisa", "Reeha", "Saadiya", "Sahla", "Thana", "Urshia", "Ari Eil", "Ashourina", "Eilbrat", "Hani'ata", "Lawita", "Marjanita", "Nahrina", "Paldina", "Ramsina", "Rdita", "Sahdina", "Sorme", "Yata", "Yayota", "Ador Eil", "Ajdina", "Akhiban", "Anlel", "Ashur Ban", "Awidan", "Bailbrone", "Hawil", "Mekha Eil", "Nabo Ram", "Nardeen", "Nasirpal", "Rab Seen", "Ram Eil", "Sennacherib", "Shaybo", "Zah Eil"];
+const pericias = ["Atleticismo", "Cura", "Erudição", "Fraude", "Furtividade", "Interpretação", "Liderança", "Perceção", "Sobrevivência"];
+const classes = [
+    {n: "Guerreiro", p: "Atleticismo", h: ["Assassinar", "Escaramuça", "Durão", "Resistente"]},
+    {n: "Ladrão", p: "Furtividade", h: ["Apunhalar", "Gatuno", "Reflexos", "Sortudo"]},
+    {n: "Clérigo", p: "Interpretação", h: ["Abençoar", "Esconjurar", "Sanar", "Visão"]},
+    {n: "Mago", p: "Erudição", h: ["Comandar", "Feitiços", "Rituais"]},
+    {n: "Patrulheiro", p: "Sobrevivência", h: ["Animal", "Batedor", "Saraivada", "Selvagem"]}
+];
+function rolar6() { return Math.floor(Math.random() * 6) + 1; }
+function rolarAtributo() {
+    let r = rolar6() + rolar6();
+    if (r <= 6) return 0;
+    if (r <= 9) return 1;
+    if (r <= 11) return 2;
+    return 3;
+}
+function sortear(arr, qtd) {
+    let embaralhado = [...arr].sort(() => 0.5 - Math.random());
+    return embaralhado.slice(0, qtd);
+}
+function gerarPersonagem() {
+    let nome = nomes[Math.floor(Math.random() * nomes.length)];
+    let attrs = { FOR: rolarAtributo(), DES: rolarAtributo(), CON: rolarAtributo(), INT: rolarAtributo(), SAB: rolarAtributo(), CAR: rolarAtributo() };
+    let cls = classes[Math.floor(Math.random() * classes.length)];
+    let habs = sortear(cls.h, cls.n === "Mago" ? 1 : 2);
+    if (cls.n === "Mago") habs.push("Invocar (dois espíritos)");
+    let periDisp = pericias.filter(p => p !== cls.p);
+    let periExtra = sortear(periDisp, 1)[0];
+    let numDadosPV = 1 + attrs.CON;
+    let rolagensPV = [];
+    for (let i = 0; i < (numDadosPV > 0 ? numDadosPV : 1); i++) rolagensPV.push(rolar6());
+    let pv = Math.max(...rolagensPV);
+    if (habs.includes("Durão")) pv += 6;
+    let result = `<h3 style="margin-top:0; color:var(--accent);">${nome}</h3>
+        <p><strong>Classe:</strong> ${cls.n}</p>
+        <p><strong>Atributos:</strong> FOR <span style="color:var(--accent); font-weight:bold;">${attrs.FOR}</span> | DES <span style="color:var(--accent); font-weight:bold;">${attrs.DES}</span> | CON <span style="color:var(--accent); font-weight:bold;">${attrs.CON}</span> | INT <span style="color:var(--accent); font-weight:bold;">${attrs.INT}</span> | SAB <span style="color:var(--accent); font-weight:bold;">${attrs.SAB}</span> | CAR <span style="color:var(--accent); font-weight:bold;">${attrs.CAR}</span></p>
+        <p><strong>Pontos de Vida (PV):</strong> ${pv}</p>
+        <p><strong>Perícias:</strong> ${cls.p}, ${periExtra}</p>
+        <p><strong>Habilidades Especiais:</strong> ${habs.join(", ")}</p>
+        <p><strong>Equipamento Inicial:</strong> 60 moedas de prata (mp)</p>`;
+    document.getElementById("resultado-gerador").innerHTML = result;
+}
+</script>
 </body>
 </html>
