@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG - Regras e Recursos</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --surface: #f8f9fa;
+            --accent: #8b0000; /* Vermelho profundo para tom RPG clássico */
+            --accent-light: #fdf2f2;
+            --text: #2c3e50;
+            --text-muted: #5a6c7d;
+            --border: #dee2e6;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.7;
+        }
+        header {
+            background: var(--bg);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            max-width: 1000px;
+            margin: auto;
+        }
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        nav a:hover {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+        .downloads {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            padding: 30px 20px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            background: #fff;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .btn:hover {
+            background: var(--accent);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(139,0,0,0.2);
+        }
+        main {
+            padding: 40px 20px;
+            max-width: 850px;
+            margin: auto;
+        }
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 100px;
+            background: #fff;
+        }
+        h2 {
+            font-family: 'Georgia', serif;
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-light);
+        }
+        h3 {
+            font-family: 'Georgia', serif;
+            color: var(--text);
+            font-size: 1.3rem;
+            margin-top: 2rem;
+        }
+        p {
+            margin-bottom: 1.2rem;
+            color: #444;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background-color: var(--accent) !important;
+            color: #ffffff !important;
+            font-weight: bold;
+            padding: 12px;
+        }
+        td {
+            padding: 12px;
+            border: 1px solid var(--border);
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .placeholder { color: var(--text-muted); font-style: italic; }
+        @media (max-width: 600px) {
+            h2 { font-size: 1.6rem; }
+            nav a { padding: 6px 12px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="text-align: center; color: var(--accent); margin: 20px 0 0 0; font-family: 'Georgia', serif; font-size: 2.5rem;">World of Dungeons</h1>
+    <nav>
+        <a href="#criacao">Personagens</a>
+        <a href="#classes">Classes</a>
+        <a href="#regras">Regras</a>
+        <a href="#pericias">Perícias</a>
+        <a href="#dano">Dano</a>
+        <a href="#recuperacao">Recuperação</a>
+        <a href="#dado">Dado do Destino</a>
+        <a href="#equipamento">Equipamento</a>
+        <a href="#mercenarios">Mercenários</a>
+        <a href="#magia">Magia</a>
+        <a href="#falhas">Complicações</a>
+        <a href="#monstros">Adversários</a>
+        <a href="#xp">XP</a>
+        <a href="#nomes">Nomes</a>
+    </nav>
+</header>
+
+<div class="downloads">
+    <a href="https://drive.google.com/file/d/1hExKNDNa_XZyTd_XWX_ubkKwrTr-QsqG/view" class="btn" target="_blank">Regras Originais</a>
+    <a href="https://drive.google.com/file/d/1TvEdq08ZvnZmHPhJmu6lU9gasXteOp9i/view" class="btn" target="_blank">Originais P&B</a>
+    <a href="https://drive.google.com/file/d/1xk_V6fjK3wT5EWCvJbfzbMpHK8DvugnM/view" class="btn" target="_blank">Tradução</a>
+    <a href="https://drive.google.com/file/d/1RXGJJxOPEDssm9x1TY3ls2rBqq8ERQNI/view" class="btn" target="_blank">Tradução (s/ img)</a>
+</div>
+
+<main>
+    <section id="criacao">
+        <h2>Criação de Personagem</h2>
+        <h3>Atributos</h3>
+        <p><strong>Força (FOR)</strong> é usada para concretizar façanhas baseados no poder físico e violência; <strong>Destreza (DES)</strong> determina a tua coordenação, pontaria e agilidade; <strong>Constituição (CON)</strong> permite-te resistir aos elementos, à fadiga e a efeitos tóxicos; <strong>Inteligência (INT)</strong> determina não só a tua capacidade de raciocínio como também o teu talento para a magia; <strong>Sabedoria (SAB)</strong>, é usada para testar o teu senso comum ou força de vontade; e <strong>Carisma (CAR)</strong> determina o quão apresentável e convincente és tu.</p>
+        <p>Lança <em>2d6</em> para cada um dos atributos:</p>
+        <ul>
+            <li><strong>6 ou menos:</strong> 0</li>
+            <li><strong>7 a 9:</strong> +1</li>
+            <li><strong>10 a 11:</strong> +2</li>
+            <li><strong>12:</strong> +3</li>
+        </ul>
+        <h3>Perícias</h3>
+        <p>Além da que é atribuída pela tua classe (ver <em>Classes</em>, abaixo) escolhe uma Perícia. As perícias são: <em>Atleticismo, Cura, Erudição, Fraude, Furtividade, Interpretação, Liderança, Perceção, ou Sobrevivência</em>.</p>
+        <h3>Pontos de Vida</h3>
+        <p>Lança um <strong>Dado de Vida (d6)</strong> + um número de dados extra de vida igual à tua <strong>CON</strong>. De entre os dados que acabaste de lançar escolhe um número deles igual ao teu <strong>Nível</strong> e soma os seus resultados para determinares os teus Pontos de Vida iniciais. Se porventura começares com menos PV do que o teu potencial máximo anuncia ao Mestre a razão por que ou pede-lhe uma ideia que o explique.</p>
+    </section>
+    <section id="classes">
+        <h2>Classes</h2>
+        <ul>
+            <li><strong>Guerreiros:</strong> Possuem <em>Atleticismo</em>. Escolhe duas habilidades especiais: <strong>Assassinar</strong> (+2 de dano no combate a curta distância), <strong>Escaramuça</strong> (+1 de dano e +1 de Armadura quando usas uma armadura leve), <strong>Durão</strong> (+6 PVs), <strong>Resistente</strong> (+1 de Armadura).</li>
+            <li><strong>Ladrões:</strong> Possuem <em>Furtividade</em>. Escolhe duas habilidades especiais: <strong>Apunhalar</strong> (esconde o teu ataque para fazeres +3 de dano), <strong>Gatuno</strong> (podes abrir uma fechadura, roubar uma bolsa, ou desarmar uma armadilha num instante), <strong>Reflexos</strong> (és sempre o primeiro a agir e podes reagir mesmo quando és surpreendido), <strong>Sortudo</strong> (uma vez por dia transformas um fracasso numa mera complicação).</li>
+            <li><strong>Clérigos:</strong> Possuem <em>Interpretação</em>. Escolhe duas habilidades especiais: <strong>Abençoar</strong> (com água benta consegues ungir itens de modo a que sejam considerados sagrados e ganhem +3 de dano contra o mal durante um curto período de tempo), <strong>Esconjurar</strong> (com o poder da tua fé e do teu símbolo divino podes tentar manter mortos-vivos à distância), <strong>Sanar</strong> (podes tentar neutralizar venenos, remover maldições, ou curar feridas só com o toque), <strong>Visão</strong> (bebe água benta para comungares com a tua divindade e assim conseguires orientação divina).</li>
+            <li><strong>Magos:</strong> Possuem <em>Erudição</em>. Começas com dois espíritos que podes invocar (ver <a href="#magia">Magia</a>, abaixo). Ganhas <strong>Invocar</strong> e escolhes outra habilidade especial: <strong>Comandar</strong> (podes tentar comandar qualquer outro espírito, demónio, etc.), <strong>Feitiços</strong> (sabes três poderes mágicos elementares: Luz, Sombra, e Projetar Voz), <strong>Rituais</strong> (podes levar a cabo rituais obscuros, anteriormente descritos em tomos e pergaminhos, dos quais conheces dois).</li>
+            <li><strong>Patrulheiros:</strong> Possuem <em>Sobrevivência</em>. Escolhe duas habilidades especiais: <strong>Animal</strong> (tens um animal ciente e leal que te acompanha), <strong>Batedor</strong> (quando fazes um reconhecimento do terreno consegues aperceber-te do teu alvo antes que ele se aperceba de ti), <strong>Saraivada</strong> (+2 no dano à distância), <strong>Selvagem</strong> (consegues comunicar com animais e podes tentar comandá-los).</li>
+        </ul>
+        <p>Para criares a tua própria classe escolhe uma perícia de classe e duas habilidades especiais.</p>
+    </section>
+    <section id="regras">
+        <h2>Regras</h2>
+        <p>Quando tentas fazer algo arriscado ou em oposição a alguém, lança <strong>2d6</strong> e somas o resultado, adicionando o valor de um dos teus Atributos que seja apropriado à ação que estás a levar a cabo. O Mestre diz-te antes de lançares quais são os possíveis riscos que corres, de modo a que possas decidir se vale a pena ou se queres rever a tua ação.</p>
+        <ul>
+            <li>Um total de <strong>6 ou menos</strong> causa-te um <strong>Fracasso</strong>; as coisas não correm bem e o Mestre pode descrever consequências. Se estiveres a usar uma Perícia, terás sucesso mesmo estando muito próximo do limite (ver <a href="#pericias">Perícias</a>, a seguir).</li>
+            <li>Um total de <strong>7 a 9</strong> faz surgir uma <strong>Complicação</strong>; consegues fazer a ação mas há um custo, um compromisso, uma retribuição, um dano, etc.</li>
+            <li>Um total de <strong>10 ou 11</strong> é um <strong>Sucesso</strong>; podes fazer a acção sem grandes complicações.</li>
+            <li>Um total de <strong>12 ou mais</strong> é um <strong>Triunfo</strong>; consegues fazer a ação com perfeição e recebes algum tipo de vantagem ou benefício extra (normalmente +1 na ação seguinte).</li>
+        </ul>
+    </section>
+    <section id="pericias">
+        <h2>Perícias</h2>
+        <p>Se tiveres uma <strong>Perícia</strong> adequada, não podes ter um <strong>Fracasso</strong>. Um lançamento de <strong>6 ou menos</strong> conta como se tivesses conseguido sucesso mesmo estando muito próximo do limite (em oposição a teres falhado logo por completo). Contudo, o Mestre pode sujeitar-te a fracassos ainda maiores do que se tivesses tido apenas uma Complicação.</p>
+        <p>Alguns objetos podem munir-te do uso de uma Perícia enquanto os tiveres na tua posse e usá-los como se fossem ferramentas ou utensílios. Se estes forem mágicos podem inclusive permitir-te o uso de uma habilidade especial.</p>
+        <h3>Ajudar ou Interferir</h3>
+        <p>Quando tentas ajudar ou contrariar alguém com quem tenhas uma relação de lealdade ou de inimizade faz um lançamento baseado num atributo apropriado à ação. Se neste lançamento alcançares um <strong>Sucesso</strong> podes atribuir <strong>+1</strong> ou <strong>-1</strong> à ação de quem ajudas ou opões. Se surgir uma <strong>Complicação</strong> acabas por ser tu a sujeitar-se às consequências de um dado perigo, retribuição ou custo.</p>
+    </section>
+    <section id="dano">
+        <h2>Dano</h2>
+        <p>Quando infliges dano, lanças os dados listados na tua arma, e adicionas um qualquer bónus que seja aplicável ao resultado. Se estiveres desarmado, rola <strong>1d6-2</strong>.</p>
+        <p>Quando sofres dano, retira-lhe o valor da tua Armadura, e remove o que sobra ao total dos teus PV. Quando os teus PV chegarem a zero ou menos, faz um lançamento baseado em <strong>CON</strong>:</p>
+        <ul>
+            <li>Um <strong>Fracasso</strong> significa que morres imediatamente.</li>
+            <li>Uma <strong>Complicação</strong> significa que estás inconsciente e à beira da morte; se fores reanimado vives apenas o suficiente para teceres umas palavras de despedida.</li>
+            <li>Se tiveres <strong>Sucesso</strong>, ficas inconsciente e a esvair-te em sangue, mas ainda há esperança para ti.</li>
+            <li>Um <strong>Triunfo</strong> resulta apenas no teu desmaio e ganhas um dado de vida extra quando tentares recuperar PVs; reza para que um inimigo não tome vantagem do teu estado incapacitado.</li>
+        </ul>
+    </section>
+    <section id="recuperacao">
+        <h2>Recuperação</h2>
+        <p>Quando descansas e consomes uma refeição ou odre, podes relançar os teus PV. Se fores assistido por um curandeiro ou médico, pega num dado extra de vida e considera que o seu lançamento resultou num <strong>6</strong>. Se descansares durante todo o dia num local que seja seguro ou confortável, pega noutro dado extra de vida e considera que o seu lançamento resultou num <strong>6</strong>.</p>
+    </section>
+    <section id="equipamento">
+        <h2>Equipamentos</h2>
+        <p>Começas com <strong>60 moedas de prata (mp)</strong>. Dependo do volume e massa de cada objeto podes transportar contigo um número de peças de equipamento igual a <strong>FOR+5</strong>.</p>
+        <ul>
+            <li><strong>Arma Ligeira (10 mp):</strong> d6. Pode ser usada como segunda arma permitindo relançar o dano uma vez por ataque (adagas, gládios, machados).</li>
+            <li><strong>Arma de Guerra (30 mp):</strong> d6+1. Usada na mão principal (espadas de mão, maças, achas, lanças).</li>
+            <li><strong>Arma de Grande Porte (40 mp):</strong> d6+2. Usa as duas mãos (montantes, eixos, armas de haste).</li>
+            <li><strong>Arco Curto (10 mp):</strong> d6 (fundas, zarabatanas).</li>
+            <li><strong>Arco (30 mp):</strong> d6+1 (bestas, pistolas).</li>
+            <li><strong>Arco Longo/Arma de Fogo (50 mp):</strong> d6+2 se disparada de posição estática (arbalestas, mosquetes).</li>
+            <li><strong>Armadura Leve (30 mp):</strong> Armadura 1 (couraças).</li>
+            <li><strong>Armadura Completa (60 mp):</strong> Armadura 2. Tem sempre um elmo. Torna bastante difícil correr, mover-se silenciosamente, saltar, etc.</li>
+            <li><strong>Escudo (10 mp):</strong> +1 Armadura.</li>
+            <li><strong>Parafernália de Aventureiro (2 mp cada):</strong> 6m de Corda, Giz, Espigões de Ferro, Pergaminho, Pederneira, Tochas (4), Tenda, Dados, Estrepes, Ligaduras, Rações de Viagem, Odre, Cantil.</li>
+            <li><strong>Ferramentas (5 mp cada):</strong> Pé de Cabra, Armadilha, Gaiola, Arpéu, Machadinha, Gazua, Vara de Pesca, Pá, Picareta, Vara Telescópica, Pena e Boião de Tinta.</li>
+            <li><strong>Objetos do Oculto (10 mp cada):</strong> Mercúrio (por dose), Pó de Osso, Frasquinho de Água Benta, Frasquinho de Sangue, Incensos e Óleos.</li>
+            <li><strong>Luxos (20 mp cada):</strong> Espelho, Lanterna, Luneta, Ampulhetas, Jogo de Tabuleiro, Roupas Caras, Símbolos Divinos e outros amuletos.</li>
+            <li><strong>Óleo de Candeia (20 mp por frasco):</strong> Incendeia uma área (d6+1 dano/turno durante 3 turnos a não ser que seja extinto). Enche 10 vezes uma lanterna.</li>
+            <li><strong>Veículos e Montadas:</strong> Barcos (50 a 200.000 mp), Carroças (30 a 100 mp), Mula (30 mp), Cavalo (100 mp), Corcel (1.000 mp).</li>
+            <li><strong>Serviços e Imóveis:</strong> Estalagem (1 mp para Dormir, Comer ou Embebedar). Propriedades (1.000 a 100.000 mp).</li>
+        </ul>
+    </section>
+    <section id="magia">
+        <h2>Magia</h2>
+        <p>A maioria da magia necessita da invocação de um <em>espírito, elemental</em> ou <em>demónio</em> para que possas criar efeitos sobrenaturais.</p>
+        <p>Um Mago começa em jogo com o conhecimento esotérico su ciente para invocar <strong>dois espíritos</strong>. Um espírito tem um nome, um aspeto físico, e dois domínios de poder (chama, sombra, pedra, raios, segredos, medo, etc.).</p>
+        <p>Para invocares um espírito que conheças, precisas de um dos seguintes:</p>
+        <ul>
+            <li>1 hora de ritual sem interrupções.</li>
+            <li>Uma dose de <strong>mercúrio</strong> - um veneno suave e uma substância viciante (10 mp por uso). Se beberes mais doses por dia do que o teu Nível tens de tentar resistir aos seus efeitos negativos com um lançamento de <strong>CON</strong>.</li>
+            <li>Um item mágico contendo um espírito.</li>
+        </ul>
+        <p>Um mago pode ordenar a um espírito que crie um efeito mágico elementar que corresponda aos seus domínios (comandos específicos são boa ideia; espíritos são caprichosos e cruéis).</p>
+        <p>Os <strong>Ataques Mágicos</strong> causam <strong>2d6+nível</strong> de dano, ou <strong>3d6</strong> se estes tiverem especialmente adaptados a esta situação (ex: usar fogo mágico contra espectro gélido).</p>
+    </section>
+    <section id="monstros">
+        <h2>Adversários e Monstros</h2>
+        <p>O dano causado por aqueles que te vão antagonizar será em regra o das suas armas e os seus PV variam consoante o seu porte ou a sua continuidade em revelar-se uma ameaça mortífera.</p>
+        <ul>
+            <li><strong>Humanoides ou Escala Humana:</strong> Provavelmente têm <strong>4 PV</strong> e podem causar <strong>1d6+1</strong> de dano.</li>
+            <li><strong>Guerreiros e Monstros de Grande Porte:</strong> Soldados bem treinados e equipados provavelmente causam <strong>2d6</strong> de dano e possuem <strong>Armadura 2</strong>. Monstros muito resistentes são raros; o Mestre vai aumentar a quantidade de dano que causam em vez dos seus PV. Deste modo será sempre arriscado enfrentá-los, mas o combate vai-se revelar bem rápido e dinâmico.</li>
+            <li><strong>Demónios e Monstros Mágicos:</strong> Causam provavelmente <strong>3d6</strong> de dano e possuem <strong>Armadura 3</strong>. O Mestre pode atribuir-te <strong>-2</strong> numa ação se os enfrentares no seu habitat ou num ambiente evocativo do seu domínio de poder.</li>
+        </ul>
+    </section>
+    <section id="dado">
+        <h2>O Dado do Destino</h2>
+        <p>Por vezes o Mestre lança o <strong>dado do destino</strong> para ver como é que uma dada situação vai ser estabelecida. Números baixos são maus auspícios, números altos são bons sortilégios. O dado do destino pode ser lançado para estabelecer o estado do clima, a predisposição geral de alguns adversários aleatórios, ou até para determinar se um monstro errante aparece ou não. O Mestre também lança o dado do destino se as personagens levarem a cabo uma ação para qual a sorte é o único factor a ter em conta.</p>
+    </section>
+    <section id="mercenarios">
+        <h2>Mercenários</h2>
+        <p><em>Custo por dia:</em></p>
+        <ul>
+            <li><strong>Portador de Tocha (2 mp):</strong> 3 PVs, Faca, Tocha.</li>
+            <li><strong>Guia (5 mp):</strong> 6 PVs, Faca, Lanterna, Corda.</li>
+            <li><strong>Homem d’Armas (20 mp):</strong> 12 PVs, Lança, Escudo, Armadura Leve.</li>
+            <li><strong>Perito (20 mp):</strong> 6 PVs, Adaga, Arco.</li>
+            <li><strong>Campeão (60 mp):</strong> 18 PVs, Armadura Completa, Alabarda, Escudo, Adaga.</li>
+        </ul>
+    </section>
+    <section id="falhas">
+        <h2>Complicações e Fracassos</h2>
+        <p>Quando o teu lançamento resulta numa <strong>Complicação</strong> ou num <strong>Fracasso</strong> vais ser atingido pelas consequências dos teus atos. Passividade, indecisão ou imprudência também geram Complicações.</p>
+        <h3>Complicações</h3>
+        <ul>
+            <li><strong>Contrapor ações:</strong> O inimigo ataca-te ao mesmo tempo que lhe desferes um golpe.</li>
+            <li><strong>Atrasar ações:</strong> Ficas atordoado ou perdes tempo com distrações menores.</li>
+            <li><strong>Distrair:</strong> Não reparas de imediato noutra ameaça (ex: armadilha).</li>
+            <li><strong>Escalar a situação:</strong> O perigo alastra-se ou agrava-se.</li>
+            <li><strong>Afetar capacidades:</strong> Penalidade temporária ou perda temporária de ferramenta útil.</li>
+            <li><strong>Impedir movimento:</strong> Bloqueiam a tua rota ou tropeças no terreno.</li>
+            <li><strong>Impor um compromisso:</strong> Para ter sucesso tens de assumir maior risco.</li>
+            <li><strong>Provocar uma reação:</strong> Ameaça adicional ou perda de vantagem psicológica.</li>
+            <li><strong>Exagerar:</strong> Fazer as coisas parecerem mais terríveis ou seguras do que realmente são.</li>
+        </ul>
+        <h3>Fracassos</h3>
+        <ul>
+            <li><strong>Capturar:</strong> Raptado ou encurralado por inimigos maiores.</li>
+            <li><strong>Difamar:</strong> Confundido com facínora, intenções deturpadas.</li>
+            <li><strong>Infligir dano:</strong> Sofres um ferimento ou efeito nefasto grave.</li>
+            <li><strong>Destruir algo importante:</strong> Arma estilhaçada ou ente querido em perigo.</li>
+            <li><strong>Avassalar deixando oportunidade:</strong> Ataque letal que também deixa o atacante vulnerável.</li>
+            <li><strong>Prevenir que faças algo:</strong> Encantamento ou monstro bloqueia definitivamente a rota.</li>
+            <li><strong>Reforçar o inimigo:</strong> Inimigo recebe aliados ou poder sombrio.</li>
+            <li><strong>Separar as personagens:</strong> O grupo é forçadamente dividido.</li>
+            <li><strong>Surpreender e forçar reação:</strong> Ameaça fatal e imediata é revelada.</li>
+        </ul>
+    </section>
+    <section id="xp">
+        <h2>XP e Níveis</h2>
+        <p>À medida que sobes de nível ganhas melhorias de acordo com a tabela que se segue.</p>
+        <div style="overflow-x:auto;">
+            <table style="width: 100%; border-collapse: collapse; text-align: center; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background-color: var(--accent); color: #000;">
+                        <th style="padding: 8px; border: 1px solid #444;">NÍVEL</th>
+                        <th style="padding: 8px; border: 1px solid #444;">DADOS DE VIDA</th>
+                        <th style="padding: 8px; border: 1px solid #444;">PERÍCIAS</th>
+                        <th style="padding: 8px; border: 1px solid #444;">ATRIBUTOS</th>
+                        <th style="padding: 8px; border: 1px solid #444;">HABILIDADES</th>
+                        <th style="padding: 8px; border: 1px solid #444;">DANO</th>
+                        <th style="padding: 8px; border: 1px solid #444;">TOTAL XP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">1</td><td style="padding: 8px; border: 1px solid #444;">1+CON</td><td style="padding: 8px; border: 1px solid #444;">1+1</td><td style="padding: 8px; border: 1px solid #444;">-</td><td style="padding: 8px; border: 1px solid #444;">2</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">0</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">2</td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">1000</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">3</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">3000</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">4</td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1 (MAX +3)</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">6000</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">5</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1d6</td><td style="padding: 8px; border: 1px solid #444;">10000</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">6</td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">15000</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">7</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;">+1 (MAX +3)</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">21000</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">8</td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">28000</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">9</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">36000</td></tr>
+                    <tr><td style="padding: 8px; border: 1px solid #444;">10</td><td style="padding: 8px; border: 1px solid #444;">+1</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1 (MAX +3)</td><td style="padding: 8px; border: 1px solid #444;"></td><td style="padding: 8px; border: 1px solid #444;">+1d6</td><td style="padding: 8px; border: 1px solid #444;">45000</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p><strong>Ganhas 1 XP por cada moeda de prata</strong> que vale o espólio que consigas pilhar de um templo, masmorra ou covil. Também ganhas XP por derrotar inimigos (ver abaixo) e completar demandas (10 XP por algo fácil e 200 XP ou mais por algo mesmo difícil) mas o que interessa mesmo é o saque.</p>
+        <ul style="list-style-type: none; padding-left: 0;">
+            <li>Derrotar um adversário menor <span style="float: right;">10 XP</span></li>
+            <li>Derrotar um adversário desafiador <span style="float: right;">20 XP</span></li>
+            <li>Derrotar um adversário superior <span style="float: right;">50 XP</span></li>
+            <li>Derrotar um monstro menor <span style="float: right;">10 XP</span></li>
+            <li>Derrotar um monstro desafiador <span style="float: right;">50 XP</span></li>
+            <li>Derrotar um monstro terrível <span style="float: right;">100 XP</span></li>
+            <li>Escapar a um demónio <span style="float: right;">50 XP</span></li>
+            <li>Enganar um demónio <span style="float: right;">100 XP</span></li>
+            <li>Sobreviver a uma batalha com um demónio <span style="float: right;">150 XP</span></li>
+            <li>Derrotar um demónio <span style="float: right;">200 XP</span></li>
+        </ul>
+    </section>
+    <section id="nomes">
+        <h2>Nomes</h2>
+        <p><em>Os nomes têm poder. Se disseres a alguém o teu nome podem tentar ressuscitar-te e trazer-te de volta à vida mesmo depois de findado o tempo que te foi destinado. Escolhe um nome de entre os que se seguem.</em></p>
+        <h3>Terras do Norte</h3>
+        <p>Aiden, Teague, Efnisien, Hoel, Maddox, Fingal, Killian, Herne, Weylyn, Taliesin, Kentigern, Gwawl, Fearghus, Calder, Deargh, Scilti, Tegid, Duffy, Edan, Fiacre, Brigit, Nantosuelta, Isolde, Fingula, Guennola, Zinerva, Oilell, Oppida, Rowena, Penarddun, Fedelm, Deirdre, Fenella, Cinnia, Mavie, Arienh, Adsaluta, Epona, Daghda, Gitta.</p>
+        <h3>Império</h3>
+        <p>Gaius, Lucius, Marcus, Publius, Titus, Tiberia, Aulus, Gnaeus, Spurius, Manius, Servius, Appius, Numerius, Vibius, Aelius, Calpurius, Moravius, Naevia, Caecilius, Tullius, Livia, Lucilia, Durmius, Fabia, Velleius, Calidius, Capenius, Furius, Domitius, Fannius, Cordius, Larcius, Albius, Amatius, Cornelia, Laelius, Flavia, Aemilius, Caelius, Tuccius, Curius, Fidelius, Fulvius, Gellius, Horatia, Hortensia, Marcius, Labenius, Luventia.</p>
+        <h3>Reino</h3>
+        <p>Teodoro, Ubaldo, Bartolomeu, Egas, Gualdim, Brás, Fuas, Garcia, Gil, Sancho, Mendo, Teobaldo, Godim, Martim, Pêro, Damião, Elias, Fernão, Urbano, Afonsa, Epifânia, Patronilha, Sancha, Urraca, Guiomar, Henriqueta, Hermengarda, Brites, Apolónia, Branca, Úrsula, Violante, Estefânia, Aldonça, Briolanja, Brízida, Constança, Genoveva, Luzia, Mécia.</p>
+        <h3>Ilhas de Raq e Laq</h3>
+        <p>Abebe, Afework, Azmera, Bogale, Daniachew, Kebede, Kifle, Lebna, Mamo, Miruts, Negasi, Selam, Selassiee, Tamirat, Teferi, Tesfaye, Tewodros, Wendimu, Yekuno, Zere, Adhiambo, Alitash, Ayanna, Berhane, Cherika, Desta, Fana, Hullanta, Lielit, Lishan, Makeda, Melke, Misrak, Nishan, Sisay, Teru, Wegaye, Worknesh, Yeshi, Zema.</p>
+        <h3>Bardul e o Grande Planalto</h3>
+        <p>Amr, Baqar, Fadl, Ghassan, Habib, Hakim, Hamzah, Hashim, Imad, Inayat, Khalid, Khalil, Malik, Mansur, Marwan, Nabil, Nasr, Rafiq, Rashid, Salim, Tahir, Thabit, Ubayd, Wadi, Yazid, Zahir, Zayd, Alina, Azizah, Bushra, Chanda, Dahab, Faiza, Ghaniyah, Halima, Hayfa, Jamilah, Jumana, Kashifah, Layla, Labna, Maheera, Maira, Maysun, Nafisa, Nuriyah, Nusayba, Ramisa, Reeha, Saadiya, Sahla, Thana, Urshia.</p>
+        <h3>Cynethis e Tarsis</h3>
+        <p>Ari Eil, Ashourina, Eilbrat, Hani'ata, Lawita, Marjanita, Nahrina, Paldina, Ramsina, Rdita, Sahdina, Sorme, Yata, Yayota, Ador Eil, Ajdina, Akhiban, Anlel, Ashur Ban, Awidan, Bailbrone, Hawil, Mekha Eil, Nabo Ram, Nardeen, Nasirpal, Rab Seen, Ram Eil, Sennacherib, Shaybo, Zah Eil.</p>
+    </section>
+    <section id="creditos">
+        <h2>Créditos</h2>
+        <p><strong>Sistema:</strong> John Harper (<a href="https://johnharper.itch.io/world-of-dungeons" target="_blank" style="color: var(--accent);">Link</a>)</p>
+        <p><strong>Versão em português:</strong> Traduzida e adaptada por João Mariano (<a href="https://newsrpg.wordpress.com/2015/02/14/mundo-de-masmorras-hacks/" target="_blank" style="color: var(--accent);">Link</a>)</p>
+    </section>
+</main>
+</body>
+</html>
